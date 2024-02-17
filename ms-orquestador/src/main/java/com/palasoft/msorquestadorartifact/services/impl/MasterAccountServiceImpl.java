@@ -1,24 +1,27 @@
 package com.palasoft.msorquestadorartifact.services.impl;
 
-import com.palasoft.msorquestadorartifact.integration.client.PruebaClient;
+import com.palasoft.msorquestadorartifact.integration.client.MasterAccountClient;
 import com.palasoft.msorquestadorartifact.services.MasterAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for master account ms
+ */
 @Service
 public class MasterAccountServiceImpl implements MasterAccountService {
-    PruebaClient pruebaClient;
-    //generalmente existe un cliente por ms a consultar
+    private final MasterAccountClient masterAccountClient;
+    /**
+     * Constructor
+     * @param masterAccountClient {@link MasterAccountClient}
+     */
     @Autowired
-    MasterAccountServiceImpl(PruebaClient pruebaClient) {
-        this.pruebaClient = pruebaClient;
+    public MasterAccountServiceImpl(final MasterAccountClient masterAccountClient) {
+        this.masterAccountClient = masterAccountClient;
     }
 
     @Override
-    public String getSaludo()
-    {
-        // En caso de necesitar manipularse se guarda en una variable
-        //en caso de no necesitar manipulacion es posible realizar return this.pruebaClient.getSaludo();
-        return this.pruebaClient.getSaludo();
+    public String entryPointMasterAccountMS() {
+        return this.masterAccountClient.entryPoint();
     }
 }
